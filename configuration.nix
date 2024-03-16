@@ -133,6 +133,7 @@
     git
     rustup
     libsForQt5.kalk
+    piper
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
