@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, outputs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -10,20 +10,12 @@
       ./hardware-configuration.nix
     ];
 
-  # Experimental features
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.vscode-extensions
-    ];
-  };
-
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "lumbridge"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -93,48 +85,22 @@
     description = "ryan";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      telegram-desktop
       firefox
       kate
-      obsidian
-      bitwarden
-      spotify
-      discord
-      runelite
-      steam
-
-      #VSCodium config
-      (vscode-with-extensions.override {
-        vscode = vscodium;
-        vscodeExtensions = with vscode-extensions.extensions.x86_64-linux; [
-          vscode-marketplace.bbenoist.nix
-          vscode-marketplace.rust-lang.rust-analyzer
-          vscode-marketplace.vscodevim.vim
-          open-vsx.jeanp413.open-remote-ssh
-        ]; 
-      })
+    #  thunderbird
     ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Allow insecure packages
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
     git
-    rustup
-    libsForQt5.kalk
-    piper
-];
+  #  wget
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -144,20 +110,10 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  programs.ssh.startAgent = true;
-
-  # Docker
-  virtualisation.docker.enable = true;
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -171,6 +127,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
 }
