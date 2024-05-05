@@ -10,6 +10,9 @@
       ./hardware-configuration.nix
     ];
 
+  # Turn experimental features because flakes are too good.
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
