@@ -5,10 +5,10 @@
 { config, pkgs, inputs, outputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  #imports =
+    #[ # Include the results of the hardware scan.
+      #./hardware-configuration.nix
+    #];
 
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -23,7 +23,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  #networking.hostName = "latitude-nix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -60,16 +60,20 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Ratbag for piper
+  services.ratbagd.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -102,6 +106,7 @@
       discord
       runelite
       steam
+      rpi-imager
 
       #VSCodium config
       (vscode-with-extensions.override {
@@ -131,8 +136,9 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
-    rustup
     libsForQt5.kalk
+
+    libratbag
     piper
 ];
 
@@ -158,6 +164,21 @@
 
   # Docker
   virtualisation.docker.enable = true;
+
+  # udev rules
+  services.udev =  {
+    enable = true;
+    extraRules = 
+    ''
+      # Make an RP2040 in BOOTSEL mode writable by all users, so you can `picotool`
+      # without `sudo`. 
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="0666"
+
+      #picoprobe
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", MODE="0666"
+
+    '';
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
