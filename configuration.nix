@@ -107,6 +107,7 @@
       runelite
       steam
       rpi-imager
+      logseq
 
       #VSCodium config
       (vscode-with-extensions.override {
