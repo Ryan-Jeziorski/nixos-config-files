@@ -159,6 +159,18 @@
 
   # List services that you want to enable:
 
+  # Garbage Collection and Optimization
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+  
+  nix.optimise = {
+    automatic = true;
+    dates = [ "03:45" ];
+  };
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
