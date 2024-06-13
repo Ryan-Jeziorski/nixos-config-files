@@ -12,17 +12,15 @@
         modules = [
           ./configuration.nix
           ./hardware-configurations/lumbridge/hardware-configuration.nix
-          { networking.hostName = "lumbridge"; }
+          { 
+            networking.hostName = "lumbridge"; 
+            # Bootloader.
+            boot.loader.grub.enable = true;
+            boot.loader.grub.device = "/dev/sda";
+            boot.loader.grub.useOSProber = true;
+          }
         ];
       };
-      #myComputer = nixpkgs.lib.nixosSystem {
-        #system = "x86_64-linux";
-        #modules = [
-          #./configuration.nix
-          #./pc-configuration.nix
-          #{ networking.hostname = "mycomputer"; }
-        #];
-      #}
     };
   };
 }
