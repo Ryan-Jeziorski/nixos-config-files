@@ -37,7 +37,7 @@
       specialArgs = {inherit inputs outputs;};
       modules = [
         ./hosts/lumbridge/configuration.nix
-        ./hardware-configurations/lumbridge/hardware-configuration.nix
+        ./hosts/lumbridge/hardware-configuration.nix
         { 
           networking.hostName = "lumbridge"; 
           # Bootloader.
