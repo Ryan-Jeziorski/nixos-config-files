@@ -19,8 +19,8 @@
       system = "x86_64-linux";
       specialArgs = {inherit inputs outputs;};
       modules = [ 
-        ./configuration.nix 
-        ./hardware-configurations/latitude-nix/hardware-configuration.nix
+        ./hosts/latitude-nix/configuration.nix 
+        ./hosts/latitude-nix/hardware-configuration.nix
         { 
           # Networking
           networking.hostName = "latitude-nix"; 
