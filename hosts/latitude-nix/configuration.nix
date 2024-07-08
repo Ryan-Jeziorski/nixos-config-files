@@ -92,7 +92,7 @@
   users.users.ryan = {
     isNormalUser = true;
     description = "ryan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       telegram-desktop
       firefox
@@ -175,6 +175,11 @@
 
   # Docker
   virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+  services.dockerRegistry.openFirewall = true;
 
   # udev rules
   services.udev =  {
@@ -192,8 +197,12 @@
   };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.allowedTCPPortRanges = [ 
+    #{ from = 5000; to = 6000; }
+  #];
+  #networking.firewall.allowedUDPPortRanges = [ 
+    #{ from = 5000; to = 6000; }
+  #];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
