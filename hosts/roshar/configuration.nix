@@ -91,7 +91,6 @@
       spotify
       discord
       runelite
-      steam
       rpi-imager
       logseq
 
@@ -107,6 +106,7 @@
       })
     ];
   };
+
   users.users.cam = {
     isNormalUser = true;
     description = "cam";
@@ -117,7 +117,14 @@
       bitwarden
       spotify
       discord
-      steam
+    ];
+  };
+
+  users.users.share = {
+    isNormalUser = true;
+    description = "share";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
     ];
   };
 
@@ -138,6 +145,7 @@
     wget
     git
     libsForQt5.kalk
+    steam
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
