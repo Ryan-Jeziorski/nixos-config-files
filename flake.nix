@@ -54,5 +54,22 @@
         }
       ];
     };
+
+    nixosConfigurations.roshar = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit inputs outputs;};
+      modules = [ 
+        ./hosts/roshar/configuration.nix 
+        ./hosts/roshar/hardware-configuration.nix
+        { 
+          # Networking
+          networking.hostName = "roshar"; 
+
+          # Bootloader.
+          boot.loader.systemd-boot.enable = true;
+          boot.loader.efi.canTouchEfiVariables = true;
+        }
+      ];
+    };
   };
 }
