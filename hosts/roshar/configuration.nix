@@ -107,6 +107,19 @@
       })
     ];
   };
+  users.users.cam = {
+    isNormalUser = true;
+    description = "cam";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+      telegram-desktop
+      firefox
+      bitwarden
+      spotify
+      discord
+      steam
+    ];
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
