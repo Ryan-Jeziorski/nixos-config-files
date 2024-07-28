@@ -77,11 +77,16 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
+  # Groups
+  users.groups.share = {
+    name = "share";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ryan = {
     isNormalUser = true;
     description = "ryan";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "share" ];
     packages = with pkgs; [
       telegram-desktop
       firefox
@@ -110,7 +115,7 @@
   users.users.cam = {
     isNormalUser = true;
     description = "cam";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "share" ];
     packages = with pkgs; [
       telegram-desktop
       firefox
@@ -122,8 +127,10 @@
 
   users.users.share = {
     isNormalUser = true;
+    group = "users";
     description = "share";
     extraGroups = [ "networkmanager" "wheel" ];
+    homeMode = "770";
     packages = with pkgs; [
     ];
   };
