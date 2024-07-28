@@ -43,13 +43,19 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+  hardware.nvidia = {
+    modesetting.enable = true;
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+
+
 
   # Configure keymap in X11
   services.xserver = {
@@ -98,6 +104,7 @@
       runelite
       rpi-imager
       logseq
+      steam
 
       #VSCodium config
       (vscode-with-extensions.override {
@@ -122,6 +129,7 @@
       bitwarden
       spotify
       discord
+      steam
     ];
   };
 
@@ -152,7 +160,7 @@
     wget
     git
     libsForQt5.kalk
-    steam
+    protonup-qt
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
