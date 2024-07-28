@@ -161,8 +161,13 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   # List services that you want to enable:
+  services.flatpak.enable = true;
 
   # Garbage Collection and Optimization
   nix.gc = {
