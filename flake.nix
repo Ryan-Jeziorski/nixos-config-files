@@ -14,16 +14,25 @@
     nix-vscode-extensions,
     ...
   }: 
-  let inherit (self) outputs;
+  let 
+    inherit (self) outputs;
+    system = "x86_64-linux";
+    #pkgs = inputs.nixpkgs.legacyPackages.${system};
+    extensions = inputs.nix-vscode-extensions.extensions.${system};
+    inherit (pkgs) vscode-with-extensions vscodium;
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {allowUnfree = true; };
+    };
   in {
+
     nixosConfigurations.latitude-nix = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
       modules = [ 
         ./hosts/latitude-nix/configuration.nix 
         ./hosts/latitude-nix/hardware-configuration.nix
         ./programs/vscodium.nix
-        { 
+        {
           # Networking
           networking.hostName = "latitude-nix"; 
 
