@@ -7,11 +7,12 @@
   vscode-with-extensions,
   vscodium,
   config,
+  user,
   ...
 }:
 with config;
 {
-  users.users.ryan = {
+  users.users.${user} = {
     packages = with pkgs; [
       (vscode-with-extensions.override {
         vscode = vscodium;

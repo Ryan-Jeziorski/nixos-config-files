@@ -17,7 +17,6 @@
   let 
     inherit (self) outputs;
     system = "x86_64-linux";
-    #pkgs = inputs.nixpkgs.legacyPackages.${system};
     extensions = inputs.nix-vscode-extensions.extensions.${system};
     inherit (pkgs) vscode-with-extensions vscodium;
     pkgs = import nixpkgs {
@@ -28,6 +27,7 @@
 
     nixosConfigurations.latitude-nix = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
+      specialArgs.user = "ryan";
       modules = [ 
         ./hosts/latitude-nix/configuration.nix 
         ./hosts/latitude-nix/hardware-configuration.nix
