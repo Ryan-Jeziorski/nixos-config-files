@@ -7,12 +7,6 @@
 {
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.vscode-extensions
-    ];
-  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -97,19 +91,6 @@
       rpi-imager
       logseq
       steam
-
-      #VSCodium config
-      (vscode-with-extensions.override {
-        vscode = vscodium;
-        vscodeExtensions = with vscode-extensions.extensions.x86_64-linux; [
-          vscode-marketplace.bbenoist.nix
-          vscode-marketplace.rust-lang.rust-analyzer
-          vscode-marketplace.vscodevim.vim
-          vscode-marketplace.karunamurti.tera
-          vscode-marketplace.samuelcolvin.jinjahtml
-          open-vsx.jeanp413.open-remote-ssh
-        ]; 
-      })
     ];
   };
 
