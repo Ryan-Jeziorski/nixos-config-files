@@ -5,11 +5,6 @@
 { config, pkgs, inputs, outputs, ... }:
 
 {
-  #imports =
-    #[ # Include the results of the hardware scan.
-      #./hardware-configuration.nix
-    #];
-
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
@@ -18,10 +13,6 @@
       outputs.overlays.vscode-extensions
     ];
   };
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
