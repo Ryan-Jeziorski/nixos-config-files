@@ -10,6 +10,7 @@
   outputs = inputs @ {
     self, 
     nixpkgs,
+    flake-utils,
     nix-vscode-extensions,
     ...
   }: 

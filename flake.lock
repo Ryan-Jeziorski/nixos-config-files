@@ -72,6 +72,10 @@
     },
     "root": {
       "inputs": {
+        "flake-utils": [
+          "nix-vscode-extensions",
+          "flake-utils"
+        ],
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": [
           "nix-vscode-extensions",
