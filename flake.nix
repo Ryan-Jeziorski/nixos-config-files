@@ -43,13 +43,13 @@
       ];
     };
 
-/*
     nixosConfigurations.lumbridge = nixpkgs.lib.nixosSystem {
-      system = "x86-64-linux";
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
+      specialArgs.user = "ryan";
       modules = [
         ./hosts/lumbridge/configuration.nix
         ./hosts/lumbridge/hardware-configuration.nix
+        ./programs/vscodium.nix
         { 
           networking.hostName = "lumbridge"; 
           # Bootloader.
@@ -61,11 +61,12 @@
     };
 
     nixosConfigurations.roshar = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
+      specialArgs.user = "ryan";
       modules = [ 
         ./hosts/roshar/configuration.nix 
         ./hosts/roshar/hardware-configuration.nix
+        ./programs/vscodium.nix
         { 
           # Networking
           networking.hostName = "roshar"; 
@@ -76,6 +77,5 @@
         }
       ];
     };
-*/
   };
 }
