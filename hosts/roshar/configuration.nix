@@ -41,8 +41,6 @@
   services.xserver.desktopManager.plasma5.enable = true;
   #services.displayManager.defaultSession = "plasmax11";
 
-
-
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "us";

@@ -8,13 +8,6 @@
   # Turn experimental features because flakes are too good.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Oeverlays
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.vscode-extensions
-    ];
-  };
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -78,17 +71,6 @@
       firefox
       kate
       obsidian
-
-      #VSCodium config
-      (vscode-with-extensions.override {
-        vscode = vscodium;
-        vscodeExtensions = with vscode-extensions.extensions.x86_64-linux; [
-          vscode-marketplace.bbenoist.nix
-          vscode-marketplace.rust-lang.rust-analyzer
-          vscode-marketplace.vscodevim.vim
-          open-vsx.jeanp413.open-remote-ssh
-        ]; 
-      })
     ];
   };
 
@@ -98,6 +80,8 @@
   # Allow insecure packages
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+    "electron-25.9.0"
+    "electron-27.3.11"
   ];
 
   # List packages installed in system profile. To search, run:
