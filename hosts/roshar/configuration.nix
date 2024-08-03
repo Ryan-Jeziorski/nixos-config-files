@@ -89,6 +89,7 @@
       rpi-imager
       logseq
       steam
+      gparted
     ];
   };
 
