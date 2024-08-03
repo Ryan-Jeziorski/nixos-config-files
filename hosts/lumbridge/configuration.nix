@@ -8,6 +8,14 @@
   # Turn experimental features because flakes are too good.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  virtualisation.vmVariant = {
+  # following configuration is added only when building VM with build-vm
+  virtualisation = {
+    memorySize =  8192; # Use 8192MiB memory.
+    cores = 8;     
+  };
+  };
+
   # Enable networking
   networking.networkmanager.enable = true;
 
