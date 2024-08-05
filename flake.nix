@@ -2,33 +2,37 @@
   description = "NixOS configuration";
 
   inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    flake-utils.follows = "nix-vscode-extensions/flake-utils";
     nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
   };
 
   outputs = inputs @ {
     self, 
-    nixpkgs, 
+    nixpkgs,
+    flake-utils,
     nix-vscode-extensions,
     ...
   }: 
-  let inherit (self) outputs;
-  in {
-    overlays = import ./overlays {inherit inputs;};
-    nixpkgs = {
-      overlays = [
-        outputs.overlays.vscode-extensions
-      ];
+  let 
+    inherit (self) outputs;
+    system = "x86_64-linux";
+    extensions = inputs.nix-vscode-extensions.extensions.${system};
+    inherit (pkgs) vscode-with-extensions vscodium;
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {allowUnfree = true; };
     };
+  in {
 
     nixosConfigurations.latitude-nix = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
+      specialArgs.user = "ryan";
       modules = [ 
         ./hosts/latitude-nix/configuration.nix 
         ./hosts/latitude-nix/hardware-configuration.nix
-        { 
+        ./programs/vscodium.nix
+        {
           # Networking
           networking.hostName = "latitude-nix"; 
 
@@ -40,11 +44,12 @@
     };
 
     nixosConfigurations.lumbridge = nixpkgs.lib.nixosSystem {
-      system = "x86-64-linux";
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
+      specialArgs.user = "ryan";
       modules = [
         ./hosts/lumbridge/configuration.nix
         ./hosts/lumbridge/hardware-configuration.nix
+        ./programs/vscodium.nix
         { 
           networking.hostName = "lumbridge"; 
           # Bootloader.
@@ -56,11 +61,12 @@
     };
 
     nixosConfigurations.roshar = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
+      specialArgs.user = "ryan";
       modules = [ 
         ./hosts/roshar/configuration.nix 
         ./hosts/roshar/hardware-configuration.nix
+        ./programs/vscodium.nix
         { 
           # Networking
           networking.hostName = "roshar"; 

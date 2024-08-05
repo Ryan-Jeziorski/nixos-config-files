@@ -7,12 +7,6 @@
 {
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.vscode-extensions
-    ];
-  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -46,8 +40,6 @@
   services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   #services.displayManager.defaultSession = "plasmax11";
-
-
 
   # Configure keymap in X11
   services.xserver = {
@@ -97,19 +89,7 @@
       rpi-imager
       logseq
       steam
-
-      #VSCodium config
-      (vscode-with-extensions.override {
-        vscode = vscodium;
-        vscodeExtensions = with vscode-extensions.extensions.x86_64-linux; [
-          vscode-marketplace.bbenoist.nix
-          vscode-marketplace.rust-lang.rust-analyzer
-          vscode-marketplace.vscodevim.vim
-          vscode-marketplace.karunamurti.tera
-          vscode-marketplace.samuelcolvin.jinjahtml
-          open-vsx.jeanp413.open-remote-ssh
-        ]; 
-      })
+      gparted
     ];
   };
 
