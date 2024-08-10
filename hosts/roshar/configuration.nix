@@ -93,6 +93,7 @@
 
       # Text editors
       helix
+      neovim
     ];
   };
 
