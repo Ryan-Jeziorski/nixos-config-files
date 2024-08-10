@@ -90,6 +90,9 @@
       logseq
       steam
       gparted
+
+      # Text editors
+      helix
     ];
   };
 
