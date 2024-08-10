@@ -88,7 +88,6 @@
       gparted
 
       # Temp text editors to try out
-      neovim
       helix
     ];
   };
