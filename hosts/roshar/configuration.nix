@@ -139,7 +139,7 @@
     pkgs.git
     pkgs.libsForQt5.kalk
     pkgs.protonup-qt
-    inputs.nixvim.packages.${system}.default
+    inputs.nixvim.packages.nixvim
 ];
 
   # Some programs need SUID wrappers, can be configured further or are

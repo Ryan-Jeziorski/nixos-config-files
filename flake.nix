@@ -5,10 +5,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flake-utils.follows = "nix-vscode-extensions/flake-utils";
     nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
-    nixvim = {
-      url = "github:Ryan-Jeziorski/nix-vim-config";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:Ryan-Jeziorski/nix-vim-config";
   };
 
   outputs = inputs @ {
@@ -25,7 +22,7 @@
     extensions = inputs.nix-vscode-extensions.extensions.${system};
     inherit (pkgs) vscode-with-extensions vscodium nixvim;
     pkgs = import nixpkgs {
-      inherit system;
+      inherit system nixvim;
       config = {allowUnfree = true; };
     };
   in {
