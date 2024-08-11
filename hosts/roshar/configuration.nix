@@ -141,6 +141,10 @@
     pkgs.protonup-qt
     inputs.nixvim.legacyPackages.x86_64-linux.nixvim
 ];
+environment.shellAliases = {
+  vi = "nvim";
+  vim = "nvim";
+};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
