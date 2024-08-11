@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, inputs, outputs, ... }:
+{ config, pkgs, nixvim, inputs, outputs, ... }:
 
 {
   # Experimental features
@@ -93,7 +93,7 @@
 
       # Text editors
       helix
-      neovim
+#      neovim
     ];
   };
 
@@ -133,12 +133,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    libsForQt5.kalk
-    protonup-qt
+  environment.systemPackages = [
+    pkgs.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    pkgs.wget
+    pkgs.git
+    pkgs.libsForQt5.kalk
+    pkgs.protonup-qt
+    inputs.nixvim.packages.${system}.default
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
