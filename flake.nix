@@ -5,6 +5,10 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flake-utils.follows = "nix-vscode-extensions/flake-utils";
     nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
+    nixvim = {
+      url = "github:Ryan-Jeziorski/nix-vim-config";
+      inputs.nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -12,21 +16,22 @@
     nixpkgs,
     flake-utils,
     nix-vscode-extensions,
+    nixvim,
     ...
   }: 
   let 
     inherit (self) outputs;
     system = "x86_64-linux";
     extensions = inputs.nix-vscode-extensions.extensions.${system};
-    inherit (pkgs) vscode-with-extensions vscodium;
+    inherit (pkgs) vscode-with-extensions vscodium nixvim;
     pkgs = import nixpkgs {
-      inherit system;
+      inherit system nixvim;
       config = {allowUnfree = true; };
     };
   in {
 
     nixosConfigurations.latitude-nix = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium;};
+      specialArgs = {inherit inputs outputs system pkgs extensions vscode-with-extensions vscodium nixvim;};
       specialArgs.user = "ryan";
       modules = [ 
         ./hosts/latitude-nix/configuration.nix 
@@ -39,6 +44,10 @@
           # Bootloader.
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
+          environment.systemPackages = with pkgs; [
+            nixvim.legacyPackages.x86_64-linux.nixvim
+          ];
+          
         }
       ];
     };
