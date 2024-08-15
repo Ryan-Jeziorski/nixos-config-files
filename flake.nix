@@ -5,10 +5,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flake-utils.follows = "nix-vscode-extensions/flake-utils";
     nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
-    nixvim = {
-      url = "github:Ryan-Jeziorski/nix-vim-config";
-      inputs.nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
-    };
+    nixvim.url = "github:Ryan-Jeziorski/nix-vim-config";
   };
 
   outputs = inputs @ {
@@ -44,9 +41,7 @@
           # Bootloader.
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
-          environment.systemPackages = with pkgs; [
-            nixvim.legacyPackages.x86_64-linux.nixvim
-          ];
+          environment.systemPackages.nixvim = nixvim.legacyPackages.x86_64-linux.nixvim;
           
         }
       ];
