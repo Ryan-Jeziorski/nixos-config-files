@@ -41,7 +41,11 @@
           # Bootloader.
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
-          #environment.systemPackages.nixvim = nixvim.legacyPackages.x86_64-linux.nixvim;
+
+          # nixvim config
+          environment.systemPackages = [
+            inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+          ];
           
         }
       ];
