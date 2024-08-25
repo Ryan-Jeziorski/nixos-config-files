@@ -47,6 +47,10 @@
   # Ratbag for piper
   services.ratbagd.enable = true;
 
+  # Logitech wireless mouse unify tool
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
