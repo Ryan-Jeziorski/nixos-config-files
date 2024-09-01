@@ -76,6 +76,7 @@
           boot.loader.efi.canTouchEfiVariables = true;
         }
       ];
+    };
 
     nixosConfigurations.ashyn = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs system pkgs ;};
@@ -92,7 +93,6 @@
           boot.loader.efi.canTouchEfiVariables = true;
         }
       ];
-    };
     };
   };
 }
