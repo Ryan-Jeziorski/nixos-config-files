@@ -41,6 +41,12 @@
           # Bootloader.
           boot.loader.systemd-boot.enable = true;
           boot.loader.efi.canTouchEfiVariables = true;
+
+          # nixvim config
+          environment.systemPackages = [
+            inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+          ];
+          
         }
       ];
     };
@@ -72,6 +78,23 @@
         { 
           # Networking
           networking.hostName = "roshar"; 
+
+          # Bootloader.
+          boot.loader.systemd-boot.enable = true;
+          boot.loader.efi.canTouchEfiVariables = true;
+        }
+      ];
+    };
+
+    nixosConfigurations.ashyn = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs system pkgs ;};
+      specialArgs.user = "ryan";
+      modules = [ 
+        ./hosts/ashyn/configuration.nix 
+        ./hosts/ashyn/hardware-configuration.nix
+        {
+          # Networking
+          networking.hostName = "ashyn"; 
 
           # Bootloader.
           boot.loader.systemd-boot.enable = true;
