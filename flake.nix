@@ -102,5 +102,22 @@
         }
       ];
     };
+
+    nixosConfigurations.braize = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs system pkgs ;};
+      specialArgs.user = "ryan";
+      modules = [ 
+        ./hosts/braize/configuration.nix 
+        ./hosts/braize/hardware-configuration.nix
+        {
+          # Networking
+          #networking.hostName = "ashyn"; 
+
+          # Bootloader.
+          #boot.loader.systemd-boot.enable = true;
+          #boot.loader.efi.canTouchEfiVariables = true;
+        }
+      ];
+    };
   };
 }
