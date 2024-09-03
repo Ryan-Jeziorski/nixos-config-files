@@ -30,10 +30,10 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
+  # Enable the KDE Plasma Desktop Environment with x11 session
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
 
   # Configure keymap in X11
   services.xserver = {
@@ -46,6 +46,10 @@
 
   # Ratbag for piper
   services.ratbagd.enable = true;
+
+  # Logitech wireless mouse unify tool
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -86,6 +90,9 @@
       rpi-imager
       logseq
       gparted
+
+      # Temp text editors to try out
+      helix
     ];
   };
 
@@ -96,6 +103,12 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
     "electron-27.3.11"
+  ];
+
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    nerdfonts
   ];
 
 
