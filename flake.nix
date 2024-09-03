@@ -77,5 +77,22 @@
         }
       ];
     };
+
+    nixosConfigurations.ashyn = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs system pkgs ;};
+      specialArgs.user = "ryan";
+      modules = [ 
+        ./hosts/ashyn/configuration.nix 
+        ./hosts/ashyn/hardware-configuration.nix
+        {
+          # Networking
+          networking.hostName = "ashyn"; 
+
+          # Bootloader.
+          boot.loader.systemd-boot.enable = true;
+          boot.loader.efi.canTouchEfiVariables = true;
+        }
+      ];
+    };
   };
 }
