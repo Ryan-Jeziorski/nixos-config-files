@@ -104,6 +104,7 @@
     };
 
     nixosConfigurations.braize = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
       specialArgs = {inherit inputs outputs system pkgs ;};
       specialArgs.user = "ryan";
       modules = [ 

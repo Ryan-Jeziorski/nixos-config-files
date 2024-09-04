@@ -5,9 +5,9 @@
 { config, pkgs, inputs, outputs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  #imports = [
+    #./hardware-configuration.nix
+  #];
   # Include experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
