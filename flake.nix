@@ -18,7 +18,7 @@
   }: 
   let 
     inherit (self) outputs;
-    system = "x86_64-linux";
+    system = builtins.currentSystem;
     extensions = inputs.nix-vscode-extensions.extensions.${system};
     inherit (pkgs) vscode-with-extensions vscodium nixvim;
     pkgs = import nixpkgs {
