@@ -36,7 +36,6 @@
             environment.systemPackages = [
               inputs.nixvim.legacyPackages.x86_64-linux.nixvim
             ];
-            
           }
         ];
       };
@@ -54,6 +53,11 @@
             boot.loader.grub.enable = true;
             boot.loader.grub.device = "/dev/sda";
             boot.loader.grub.useOSProber = true;
+
+            # nixvim config
+            environment.systemPackages = [
+              inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+            ];
           }
         ];
       };
@@ -72,6 +76,11 @@
             # Bootloader.
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
+
+            # nixvim config
+            environment.systemPackages = [
+              inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+            ];
           }
         ];
       };
@@ -89,6 +98,11 @@
             # Bootloader.
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
+
+            # nixvim config
+            environment.systemPackages = [
+              inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+            ];
           }
         ];
       };
