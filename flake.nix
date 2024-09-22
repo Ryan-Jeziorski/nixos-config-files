@@ -23,7 +23,7 @@
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
           ./hosts/latitude-nix/hardware-configuration.nix
-          ./programs/vscodium.nix
+          #./programs/vscodium.nix
           {
             # Networking
             networking.hostName = "latitude-nix"; 
@@ -47,7 +47,7 @@
         modules = [
           ./hosts/lumbridge/configuration.nix
           ./hosts/lumbridge/hardware-configuration.nix
-          ./programs/vscodium.nix
+          #./programs/vscodium.nix
           { 
             networking.hostName = "lumbridge"; 
             # Bootloader.
@@ -64,7 +64,7 @@
         modules = [ 
           ./hosts/roshar/configuration.nix 
           ./hosts/roshar/hardware-configuration.nix
-          ./programs/vscodium.nix
+          #./programs/vscodium.nix
           { 
             # Networking
             networking.hostName = "roshar"; 
