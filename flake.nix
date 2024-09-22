@@ -6,34 +6,34 @@
     flake-utils.follows = "nix-vscode-extensions/flake-utils";
     nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
     nixvim.url = "github:Ryan-Jeziorski/nix-vim-config/dev";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs = inputs @ {
     self, 
-    nixpkgs,
-    flake-utils,
-    nix-vscode-extensions,
-    nixvim,
     ...
   }: 
-  flake-parts.lib.mkFlake { inherit inputs; } {
+  inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    systems = [ "x86_64-linux" "aarch64-linux" ];
 
-    nixosConfigurations.braize = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = {inherit inputs outputs pkgs ;};
-      specialArgs.user = "ryan";
-      modules = [ 
-        ./hosts/braize/configuration.nix 
-        ./hosts/braize/hardware-configuration.nix
-        {
-          # Networking
-          #networking.hostName = "ashyn"; 
+    flake = {
+      nixosConfigurations.braize = inputs.nixpkgs.lib.nixosSystem {
+        #system = "aarch64-linux";
+        specialArgs = {inherit inputs ;};
+        specialArgs.user = "ryan";
+        modules = [ 
+          ./hosts/braize/configuration.nix 
+          ./hosts/braize/hardware-configuration.nix
+          {
+            # Networking
+            #networking.hostName = "ashyn"; 
 
-          # Bootloader.
-          #boot.loader.systemd-boot.enable = true;
-          #boot.loader.efi.canTouchEfiVariables = true;
-        }
-      ];
+            # Bootloader.
+            #boot.loader.systemd-boot.enable = true;
+            #boot.loader.efi.canTouchEfiVariables = true;
+          }
+        ];
+      };
     };
   };
 }
