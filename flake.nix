@@ -17,6 +17,82 @@
     systems = [ "x86_64-linux" "aarch64-linux" ];
 
     flake = {
+      nixosConfigurations.latitude-nix = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs ;};
+        specialArgs.user = "ryan";
+        modules = [ 
+          ./hosts/latitude-nix/configuration.nix 
+          ./hosts/latitude-nix/hardware-configuration.nix
+          ./programs/vscodium.nix
+          {
+            # Networking
+            networking.hostName = "latitude-nix"; 
+
+            # Bootloader.
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
+
+            # nixvim config
+            environment.systemPackages = [
+              inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+            ];
+            
+          }
+        ];
+      };
+
+      nixosConfigurations.lumbridge = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs ;};
+        specialArgs.user = "ryan";
+        modules = [
+          ./hosts/lumbridge/configuration.nix
+          ./hosts/lumbridge/hardware-configuration.nix
+          ./programs/vscodium.nix
+          { 
+            networking.hostName = "lumbridge"; 
+            # Bootloader.
+            boot.loader.grub.enable = true;
+            boot.loader.grub.device = "/dev/sda";
+            boot.loader.grub.useOSProber = true;
+          }
+        ];
+      };
+
+      nixosConfigurations.roshar = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs ;};
+        specialArgs.user = "ryan";
+        modules = [ 
+          ./hosts/roshar/configuration.nix 
+          ./hosts/roshar/hardware-configuration.nix
+          ./programs/vscodium.nix
+          { 
+            # Networking
+            networking.hostName = "roshar"; 
+
+            # Bootloader.
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
+          }
+        ];
+      };
+
+      nixosConfigurations.ashyn = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs ;};
+        specialArgs.user = "ryan";
+        modules = [ 
+          ./hosts/ashyn/configuration.nix 
+          ./hosts/ashyn/hardware-configuration.nix
+          {
+            # Networking
+            networking.hostName = "ashyn"; 
+
+            # Bootloader.
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
+          }
+        ];
+      };
+
       nixosConfigurations.braize = inputs.nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {inherit inputs ;};
