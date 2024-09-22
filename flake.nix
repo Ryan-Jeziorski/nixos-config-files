@@ -18,7 +18,7 @@
 
     flake = {
       nixosConfigurations.latitude-nix = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs ;};
+        specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
@@ -42,7 +42,7 @@
       };
 
       nixosConfigurations.lumbridge = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs ;};
+        specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [
           ./hosts/lumbridge/configuration.nix
@@ -59,7 +59,7 @@
       };
 
       nixosConfigurations.roshar = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs ;};
+        specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
           ./hosts/roshar/configuration.nix 
@@ -77,7 +77,7 @@
       };
 
       nixosConfigurations.ashyn = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs ;};
+        specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
           ./hosts/ashyn/configuration.nix 
@@ -95,7 +95,7 @@
 
       nixosConfigurations.braize = inputs.nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        specialArgs = {inherit inputs ;};
+        specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
           ./hosts/braize/configuration.nix 
