@@ -108,6 +108,7 @@
       spotify
       discord
       steam
+      runelite
     ];
   };
 
