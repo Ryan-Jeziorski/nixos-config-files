@@ -5,7 +5,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flake-utils.follows = "nix-vscode-extensions/flake-utils";
     nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
-    nixvim.url = "github:Ryan-Jeziorski/nix-vim-config/dev";
+    nixvim.url = "github:Ryan-Jeziorski/nix-vim-config/more_plugins";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
