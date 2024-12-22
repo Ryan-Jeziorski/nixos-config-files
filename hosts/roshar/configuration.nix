@@ -144,6 +144,7 @@
     pkgs.libsForQt5.kalk
     pkgs.protonup-qt
     inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+    pkgs.devbox
 ];
 environment.shellAliases = {
   vi = "nvim";
