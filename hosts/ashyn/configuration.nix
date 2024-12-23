@@ -43,6 +43,8 @@
                                           5672  # rabbitmq amqp
                                           25672 # rabbitmq clustering
                                           15672 # rabbitmq web portal
+                                          4321
+                                          3321
                                         ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
