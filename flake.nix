@@ -81,6 +81,7 @@
             environment.systemPackages = [
               inputs.nixvim.legacyPackages.x86_64-linux.nixvim
             ];
+            programs.kdeconnect.enable = true;
           }
         ];
       };
