@@ -93,6 +93,7 @@
       logseq
       steam
       gparted
+      shutter
 
       # Text editors
       helix
