@@ -4,7 +4,7 @@
   inputs = {
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flake-utils.follows = "nix-vscode-extensions/flake-utils";
-    nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:Ryan-Jeziorski/nix-vim-config/dev";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
@@ -89,6 +89,7 @@
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
+          ./programs/rabbitmq.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
