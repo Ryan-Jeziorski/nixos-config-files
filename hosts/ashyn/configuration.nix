@@ -30,6 +30,7 @@
     wget
     git
     tree
+    tmux
   ];
 
   # List services that you want to enable:
