@@ -4,7 +4,7 @@
   inputs = {
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flake-utils.follows = "nix-vscode-extensions/flake-utils";
-    nixpkgs.follows = "nix-vscode-extensions/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:Ryan-Jeziorski/nix-vim-config/more_plugins";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
@@ -81,6 +81,7 @@
             environment.systemPackages = [
               inputs.nixvim.legacyPackages.x86_64-linux.nixvim
             ];
+            programs.kdeconnect.enable = true;
           }
         ];
       };

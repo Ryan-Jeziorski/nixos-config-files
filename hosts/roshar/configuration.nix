@@ -93,6 +93,7 @@
       logseq
       steam
       gparted
+      shutter
 
       # Text editors
       helix
@@ -144,6 +145,8 @@
     pkgs.libsForQt5.kalk
     pkgs.protonup-qt
     inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+    pkgs.devbox
+    pkgs.kdePackages.krdc
 ];
 environment.shellAliases = {
   vi = "nvim";
