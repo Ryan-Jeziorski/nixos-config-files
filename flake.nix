@@ -23,6 +23,7 @@
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
           ./hosts/latitude-nix/hardware-configuration.nix
+          ./programs/tmux.nix
           #./programs/vscodium.nix
           {
             # Networking
