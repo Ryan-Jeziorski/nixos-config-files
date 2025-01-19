@@ -25,6 +25,7 @@
           ./hosts/latitude-nix/hardware-configuration.nix
           ./desktops/budgie.nix
           ./programs/tmux.nix
+          ./programs/kitty.nix
           #./programs/vscodium.nix
           {
             # Networking
