@@ -23,7 +23,7 @@
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
           ./hosts/latitude-nix/hardware-configuration.nix
-          ./desktops/kde-x11.nix
+          ./desktops/budgie.nix
           ./programs/tmux.nix
           #./programs/vscodium.nix
           {
