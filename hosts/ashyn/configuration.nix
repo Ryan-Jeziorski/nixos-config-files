@@ -30,6 +30,7 @@
     wget
     git
     tree
+    tmux
   ];
 
   # List services that you want to enable:
@@ -38,10 +39,17 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8000 ];
+  networking.firewall.allowedTCPPorts = [ 
+                                          8000  # hello axum web server
+                                          5672  # rabbitmq amqp
+                                          25672 # rabbitmq clustering
+                                          15672 # rabbitmq web portal
+                                          4321
+                                          3321
+                                        ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

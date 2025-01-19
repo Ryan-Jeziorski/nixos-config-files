@@ -52,7 +52,6 @@
   hardware.logitech.wireless.enableGraphical = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
