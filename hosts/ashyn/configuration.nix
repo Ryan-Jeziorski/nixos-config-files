@@ -40,6 +40,7 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 
+                                          5050  # Zola SSG
                                           8000  # hello axum web server
                                           5672  # rabbitmq amqp
                                           25672 # rabbitmq clustering
