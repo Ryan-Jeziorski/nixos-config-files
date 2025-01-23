@@ -26,6 +26,7 @@
           ./desktops/budgie.nix
           ./programs/tmux.nix
           ./programs/kitty.nix
+          ./programs/mulvad-vpn.nix
           #./programs/vscodium.nix
           {
             # Networking
