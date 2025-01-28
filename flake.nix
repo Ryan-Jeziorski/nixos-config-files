@@ -68,6 +68,8 @@
         modules = [ 
           ./hosts/roshar/configuration.nix 
           ./hosts/roshar/hardware-configuration.nix
+          ./programs/kitty.nix
+          ./programs/tmux.nix
           #./programs/vscodium.nix
           { 
             # Networking

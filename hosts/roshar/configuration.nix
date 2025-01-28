@@ -147,6 +147,10 @@
     inputs.nixvim.legacyPackages.x86_64-linux.nixvim
     pkgs.devbox
     pkgs.kdePackages.krdc
+
+    # cli note-taking tool
+    pkgs.nb
+    pkgs.w3m
 ];
 environment.shellAliases = {
   vi = "nvim";
