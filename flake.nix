@@ -92,7 +92,7 @@
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
-          ./programs/rabbitmq.nix
+          ./services/rabbitmq.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
@@ -102,36 +102,6 @@
             # Bootloader.
             boot.loader.systemd-boot.enable = true;
             boot.loader.efi.canTouchEfiVariables = true;
-
-            # Caddy
-            services.caddy = {
-              enable =true;
-              virtualHosts."ashyn.local" = {
-                serverAliases = [
-                  "ashyn.local"
-                  "ashyn"
-                  "localhost"
-                ];
-                extraConfig = ''
-                  tls internal
-                  reverse_proxy to localhost:8000 {
-                    header_down X-Read-IP {http.request.remote}
-                    header_down X-Forwarded-For {http.request.remote}
-                  }
-                '';
-              };
-              #extraConfig = ''
-                #auto_https off
-                #http://ashyn.local {
-                  #bind 192.168.0.26
-                  #reverse_proxy to http://127.0.0.1:8000
-                #}
-                #http://192.168.0.26 {
-                  #bind 192.168.0.26
-                  #reverse_proxy to http://127.0.0.1:8000
-                #}
-              #'';
-            };
 
             # nixvim config
             environment.systemPackages = [

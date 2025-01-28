@@ -1,8 +1,6 @@
 {
- # config,
   ...
 }:
-# with config;
 {
   services.rabbitmq.enable = false; # Change this to true to enable rabbitmq
   services.rabbitmq.managementPlugin.enable = true;
