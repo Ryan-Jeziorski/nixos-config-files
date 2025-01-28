@@ -93,6 +93,7 @@
         specialArgs.user = "ryan";
         modules = [ 
           ./services/rabbitmq.nix
+          ./services/caddy.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
