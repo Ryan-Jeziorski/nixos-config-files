@@ -102,8 +102,8 @@
             networking.hostName = "the_pouch"; 
 
             # Bootloader.
-            boot.loader.systemd-boot.enable = true;
-            boot.loader.efi.canTouchEfiVariables = true;
+            boot.loader.grub.enable = true;
+            boot.loader.grub.device = "/dev/sda";
 
             # nixvim config
             environment.systemPackages = [
