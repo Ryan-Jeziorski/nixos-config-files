@@ -36,10 +36,11 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
   #services.displayManager.defaultSession = "plasmax11";
 
   # Configure keymap in X11
