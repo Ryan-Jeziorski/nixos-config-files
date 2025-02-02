@@ -27,6 +27,7 @@
           ./programs/tmux.nix
           ./programs/kitty.nix
           ./programs/mulvad-vpn.nix
+          ./programs/app-image.nix
           #./programs/vscodium.nix
           {
             # Networking
