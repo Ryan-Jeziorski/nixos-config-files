@@ -88,18 +88,18 @@
         ];
       };
 
-      nixosConfigurations.the_pouch = inputs.nixpkgs.lib.nixosSystem {
+      nixosConfigurations.pouch = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
-          ./hosts/the_pouch/configuration.nix 
-          ./hosts/the_pouch/hardware-configuration.nix
+          ./hosts/pouch/configuration.nix 
+          ./hosts/pouch/hardware-configuration.nix
           ./programs/kitty.nix
           ./programs/tmux.nix
           #./programs/vscodium.nix
           { 
             # Networking
-            networking.hostName = "the_pouch"; 
+            networking.hostName = "pouch"; 
 
             # Bootloader.
             boot.loader.systemd-boot.enable = true;
