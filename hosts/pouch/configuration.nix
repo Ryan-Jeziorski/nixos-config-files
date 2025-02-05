@@ -85,6 +85,7 @@
       discord
       steam
       runelite
+      obsidian
     ];
   };
 
