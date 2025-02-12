@@ -28,6 +28,7 @@
           ./programs/kitty.nix
           ./programs/mulvad-vpn.nix
           ./programs/app-image.nix
+          ./programs/wireguard.nix
           #./programs/vscodium.nix
           {
             # Networking
