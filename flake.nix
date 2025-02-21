@@ -98,10 +98,11 @@
           ./hosts/ashyn/hardware-configuration.nix
           {
             systemd.services."hello-world" = {
+              path = [ inputs.nixpkgs.git ];
               script = ''
                 set -xu
                 echo "hello world"
-                #/run/wrappers/bin/sudo -u ryan /run/current-system/sw/bin/nix flake update --commit-lock-file --flake /home/ryan/nixos-config-files/
+                /run/wrappers/bin/sudo -u ryan /run/current-system/sw/bin/nix flake update --commit-lock-file --flake /home/ryan/nixos-config-files/
               '';
               serviceConfig = {
                 Type = "oneshot";
