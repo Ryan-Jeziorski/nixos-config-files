@@ -94,33 +94,10 @@
         modules = [ 
           ./services/rabbitmq.nix
           ./services/caddy.nix
+          ./services/auto_upgrade.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
-            systemd.services."hello-world" = {
-              path = [ inputs.nixpkgs.git ];
-              script = ''
-                set -xu
-                echo "hello world"
-                /run/wrappers/bin/sudo -u ryan /run/current-system/sw/bin/nix flake update --commit-lock-file --flake /home/ryan/nixos-config-files/
-              '';
-              serviceConfig = {
-                Type = "oneshot";
-                User = "root";
-              };
-              startAt = "*:0/5";
-            };
-            # Automatic Updates
-            #system.autoUpgrade = {
-              #enable = true;
-              #flake = "/etc/nixos/";
-              #flags = [
-                #"--recreate-lock-file"
-                #"--commit-lock-file"
-                #"--flake#"
-              #];
-              #dates = "20:50";
-            #};
             # Networking
             networking.hostName = "ashyn"; 
 
