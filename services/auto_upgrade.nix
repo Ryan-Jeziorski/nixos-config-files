@@ -13,10 +13,19 @@
       # Variable initalization
       user="ryan"
 
+      # Setup git
+      git config --global --add safe.directory "*"
+
       echo "Start of auto-upgrade script\n"
 
       # Update flake, run command as owner of the 
       /run/wrappers/bin/sudo -u $user /run/current-system/sw/bin/nix flake update --commit-lock-file --flake /home/ryan/nixos-config-files/
+
+      # Rebuild the system now
+      /run/wrappers/bin/sudo -u root /run/current-system/sw/bin/nixos-rebuild switch
+
+      # Clean up root git config
+      git config --global --unset safe.directory
     '';
     serviceConfig = {
       Type = "oneshot";
@@ -26,8 +35,7 @@
   systemd.timers."auto-upgrade" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "*-*-* 11:37:00 CST";
-      #OnCalendar = "*-*-* 04:00:00 CST";
+      OnCalendar = "*-*-* 04:00:00 CST";
       Unit = "auto-upgrade.service";
     };
   };
