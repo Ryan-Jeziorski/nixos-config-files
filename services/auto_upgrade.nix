@@ -6,7 +6,7 @@
   ...
 }:
 {
-  systemd.services."hello-world" = {
+  systemd.services."auto-upgrade" = {
     path = [ pkgs.git ];
     script = ''
       set -xu
@@ -17,6 +17,12 @@
       Type = "oneshot";
       User = "root";
     };
-    startAt = "*:0/5";
+  };
+  systemd.timers."auto-upgrade" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 04:00:00 CST";
+      Unit = "auto-upgrade.service";
+    };
   };
 }
