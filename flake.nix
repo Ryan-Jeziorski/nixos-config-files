@@ -92,7 +92,9 @@
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
-          ./programs/rabbitmq.nix
+          ./services/rabbitmq.nix
+          ./services/caddy.nix
+          ./services/auto_upgrade.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
