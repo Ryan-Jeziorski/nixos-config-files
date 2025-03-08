@@ -87,7 +87,6 @@
       runelite
       steam
       rpi-imager
-      logseq
       gparted
 
       # Temp text editors to try out
