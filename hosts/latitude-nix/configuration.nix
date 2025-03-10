@@ -63,7 +63,7 @@
     packages = with pkgs; [
       telegram-desktop
       firefox
-      kate
+      kdePackages.kate
       obsidian
       bitwarden
       spotify
