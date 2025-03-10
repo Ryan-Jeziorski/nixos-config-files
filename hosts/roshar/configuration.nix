@@ -90,7 +90,6 @@
       discord
       runelite
       rpi-imager
-      logseq
       steam
       gparted
       shutter
