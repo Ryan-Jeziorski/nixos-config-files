@@ -23,7 +23,7 @@
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
           ./hosts/latitude-nix/hardware-configuration.nix
-          ./desktops/budgie.nix
+          ./desktops/xfce.nix
           ./programs/tmux.nix
           ./programs/kitty.nix
           ./programs/mulvad-vpn.nix
