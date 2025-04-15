@@ -25,7 +25,7 @@
       /run/wrappers/bin/sudo -u root /run/current-system/sw/bin/nixos-rebuild switch
 
       # Clean up root git config
-      git config --global --unset safe.directory "*"
+      git config unset --global --all safe.directory
     '';
     serviceConfig = {
       Type = "oneshot";
