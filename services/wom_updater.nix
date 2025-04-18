@@ -8,7 +8,7 @@
   systemd.timers."wom_updater" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "hourly";
+      OnCalendar = "daily";
     };
   };
   systemd.services."wom_updater" = {
