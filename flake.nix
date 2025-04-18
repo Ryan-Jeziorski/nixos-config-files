@@ -95,6 +95,7 @@
           ./services/rabbitmq.nix
           ./services/caddy.nix
           ./services/auto_upgrade.nix
+          ./services/wom_updater.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
