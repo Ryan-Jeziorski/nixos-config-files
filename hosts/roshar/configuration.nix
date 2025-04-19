@@ -29,6 +29,7 @@
     LC_TIME = "en_US.UTF-8";
   };
   hardware.nvidia = {
+    open = false;
     modesetting.enable = true;
   };
 
