@@ -95,6 +95,32 @@
         ];
       };
 
+      nixosConfigurations.pouch = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit self inputs ;};
+        specialArgs.user = "ryan";
+        modules = [ 
+          ./hosts/pouch/configuration.nix 
+          ./hosts/pouch/hardware-configuration.nix
+          ./programs/kitty.nix
+          ./programs/tmux.nix
+          #./programs/vscodium.nix
+          { 
+            # Networking
+            networking.hostName = "pouch"; 
+
+            # Bootloader.
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
+
+            # nixvim config
+            environment.systemPackages = [
+              inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+            ];
+            programs.kdeconnect.enable = true;
+          }
+        ];
+      };
+
       nixosConfigurations.ashyn = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
