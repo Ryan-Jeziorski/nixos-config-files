@@ -4,6 +4,10 @@
 This is my personal nixos config files that I use to manage a few devices, there's a 
 table below with some rough specs. They're not doing anything fancy at the moment.
 
+## GitHub Repo Archival Notice
+- I've migrated this repo to Codeberg.org, the GitHub repo have been archived and will no longer be updated.
+- Visit https://codeberg.org/chiski/nixos-config-files for the most up to date version.
+
 ## See Also Ryan nixvim-confg
 - You can also checkout my nix-vim-config, I use it in this flake for my neovim config
   I plan on trying to do something similar for VSCodium.
