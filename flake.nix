@@ -23,6 +23,13 @@
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
           ./hosts/latitude-nix/hardware-configuration.nix
+          ./desktops/xfce.nix
+          ./programs/tmux.nix
+          ./programs/kitty.nix
+          ./programs/mulvad-vpn.nix
+          ./programs/app-image.nix
+          ./programs/libreoffice.nix
+          # ./programs/wireguard.nix
           #./programs/vscodium.nix
           {
             # Networking
@@ -92,7 +99,10 @@
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
-          ./programs/rabbitmq.nix
+          ./services/rabbitmq.nix
+          ./services/caddy.nix
+          ./services/auto_upgrade.nix
+          ./services/wom_updater.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {

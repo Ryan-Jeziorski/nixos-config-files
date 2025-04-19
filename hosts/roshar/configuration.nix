@@ -83,14 +83,13 @@
     packages = with pkgs; [
       telegram-desktop
       firefox
-      kate
+      kdePackages.kate
       obsidian
       bitwarden
       spotify
       discord
       runelite
       rpi-imager
-      logseq
       steam
       gparted
       shutter
