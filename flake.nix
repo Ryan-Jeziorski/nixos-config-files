@@ -23,6 +23,13 @@
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
           ./hosts/latitude-nix/hardware-configuration.nix
+          ./desktops/xfce.nix
+          ./programs/tmux.nix
+          ./programs/kitty.nix
+          ./programs/mulvad-vpn.nix
+          ./programs/app-image.nix
+          ./programs/libreoffice.nix
+          # ./programs/wireguard.nix
           #./programs/vscodium.nix
           {
             # Networking
@@ -88,11 +95,40 @@
         ];
       };
 
+      nixosConfigurations.pouch = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit self inputs ;};
+        specialArgs.user = "ryan";
+        modules = [ 
+          ./hosts/pouch/configuration.nix 
+          ./hosts/pouch/hardware-configuration.nix
+          ./programs/kitty.nix
+          ./programs/tmux.nix
+          #./programs/vscodium.nix
+          { 
+            # Networking
+            networking.hostName = "pouch"; 
+
+            # Bootloader.
+            boot.loader.systemd-boot.enable = true;
+            boot.loader.efi.canTouchEfiVariables = true;
+
+            # nixvim config
+            environment.systemPackages = [
+              inputs.nixvim.legacyPackages.x86_64-linux.nixvim
+            ];
+            programs.kdeconnect.enable = true;
+          }
+        ];
+      };
+
       nixosConfigurations.ashyn = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
-          ./programs/rabbitmq.nix
+          ./services/rabbitmq.nix
+          ./services/caddy.nix
+          ./services/auto_upgrade.nix
+          ./services/wom_updater.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
