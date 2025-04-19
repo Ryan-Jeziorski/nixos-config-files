@@ -47,28 +47,6 @@
         ];
       };
 
-      nixosConfigurations.lumbridge = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit self inputs ;};
-        specialArgs.user = "ryan";
-        modules = [
-          ./hosts/lumbridge/configuration.nix
-          ./hosts/lumbridge/hardware-configuration.nix
-          #./programs/vscodium.nix
-          { 
-            networking.hostName = "lumbridge"; 
-            # Bootloader.
-            boot.loader.grub.enable = true;
-            boot.loader.grub.device = "/dev/sda";
-            boot.loader.grub.useOSProber = true;
-
-            # nixvim config
-            environment.systemPackages = [
-              inputs.nixvim.legacyPackages.x86_64-linux.nixvim
-            ];
-          }
-        ];
-      };
-
       nixosConfigurations.roshar = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
