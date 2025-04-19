@@ -23,6 +23,13 @@
         modules = [ 
           ./hosts/latitude-nix/configuration.nix 
           ./hosts/latitude-nix/hardware-configuration.nix
+          ./desktops/xfce.nix
+          ./programs/tmux.nix
+          ./programs/kitty.nix
+          ./programs/mulvad-vpn.nix
+          ./programs/app-image.nix
+          ./programs/libreoffice.nix
+          # ./programs/wireguard.nix
           #./programs/vscodium.nix
           {
             # Networking
