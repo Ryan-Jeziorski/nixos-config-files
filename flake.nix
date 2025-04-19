@@ -76,6 +76,7 @@
           ./hosts/roshar/configuration.nix 
           ./hosts/roshar/hardware-configuration.nix
           ./programs/kitty.nix
+          ./programs/tmux.nix
           #./programs/vscodium.nix
           { 
             # Networking
@@ -98,7 +99,10 @@
         specialArgs = {inherit self inputs ;};
         specialArgs.user = "ryan";
         modules = [ 
-          ./programs/rabbitmq.nix
+          ./services/rabbitmq.nix
+          ./services/caddy.nix
+          ./services/auto_upgrade.nix
+          ./services/wom_updater.nix
           ./hosts/ashyn/configuration.nix 
           ./hosts/ashyn/hardware-configuration.nix
           {
