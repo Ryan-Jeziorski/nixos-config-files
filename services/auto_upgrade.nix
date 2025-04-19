@@ -37,6 +37,7 @@
     timerConfig = {
       OnCalendar = "*-*-* 04:00:00 CST";
       Unit = "auto-upgrade.service";
+      WakeSystem = true;
     };
   };
 }
