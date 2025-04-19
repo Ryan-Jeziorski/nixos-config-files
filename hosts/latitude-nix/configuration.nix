@@ -4,27 +4,8 @@
 
 { config, pkgs, inputs, outputs, ... }:
 {
-  #imports =
-    #[ # Include the results of the hardware scan.
-      #./hardware-configuration.nix
-    #];
-
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.vscode-extensions
-    ];
-  };
-
-
-  #networking.hostName = "latitude-nix"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -47,28 +28,17 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  #services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Ratbag for piper
   services.ratbagd.enable = true;
 
+  # Logitech wireless mouse unify tool
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
+
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
@@ -85,18 +55,15 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ryan = {
     isNormalUser = true;
     description = "ryan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       telegram-desktop
       firefox
-      kate
+      kdePackages.kate
       obsidian
       bitwarden
       spotify
@@ -104,18 +71,10 @@
       runelite
       steam
       rpi-imager
-      logseq
+      gparted
 
-      #VSCodium config
-      (vscode-with-extensions.override {
-        vscode = vscodium;
-        vscodeExtensions = with vscode-extensions.extensions.x86_64-linux; [
-          vscode-marketplace.bbenoist.nix
-          vscode-marketplace.rust-lang.rust-analyzer
-          vscode-marketplace.vscodevim.vim
-          open-vsx.jeanp413.open-remote-ssh
-        ]; 
-      })
+      # Temp text editors to try out
+      helix
     ];
   };
 
@@ -127,7 +86,6 @@
     "electron-25.9.0"
     "electron-27.3.11"
   ];
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -175,6 +133,11 @@
 
   # Docker
   virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+  services.dockerRegistry.openFirewall = true;
 
   # udev rules
   services.udev =  {
@@ -192,8 +155,12 @@
   };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.allowedTCPPortRanges = [ 
+    #{ from = 5000; to = 6000; }
+  #];
+  #networking.firewall.allowedUDPPortRanges = [ 
+    #{ from = 5000; to = 6000; }
+  #];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
